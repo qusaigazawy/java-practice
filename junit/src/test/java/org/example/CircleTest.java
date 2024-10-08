@@ -12,7 +12,7 @@ class CircleTest {
         Circle c = new Circle();
         c.calculateArea(4);
         assertEquals(50.26548245743669, c.getArea());
-        assertEquals(-1,  c.calculateArea(-2));
+        assertThrows(IllegalStateException.class, () -> c.calculateArea(-2));
         assertThrows(IllegalStateException.class, () -> {
             c.setRadius(0);
             c.getArea();
