@@ -42,7 +42,9 @@ class Triangle extends Shape {
     }
 
     public double calculateArea(double side) {
-        this.side = side;
+        if (checkAttribute(side)) this.side = side;
+        else throw new IllegalStateException("Side could not be smaller than or equal to zero!"); // Should I add try catch here or in main? Would like to hear your advice on that.
+
         return this.calculateArea();
     }
 
