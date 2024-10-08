@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CircleTest {
 
@@ -11,6 +12,11 @@ class CircleTest {
         Circle c = new Circle();
         c.calculateArea(4);
         assertEquals(50.26548245743669, c.getArea());
+        assertEquals(-1,  c.calculateArea(-2));
+        assertThrows(IllegalStateException.class, () -> {
+            c.setRadius(0);
+            c.getArea();
+        });
     }
 
     @Test
@@ -19,5 +25,10 @@ class CircleTest {
         c.setRadius(4);
         c.calculatePerimeter();
         assertEquals(25.132741228718345, c.getPerimeter());
+        assertThrows(IllegalStateException.class, () -> {
+            c.setRadius(0);
+            c.getArea();
+        });
+
     }
 }
