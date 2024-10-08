@@ -55,12 +55,12 @@ class Circle extends Shape {
     }
 
     // getters
-    void getArea() {
-        System.out.printf("Area of the circle is: %.2f \n", this.area);
+    double getArea() {
+        return this.area;
     }
 
-    void getPerimeter() {
-        System.out.printf("Perimeter of the circle is: %.2f \n", this.perimeter );
+    double getPerimeter() {
+        return this.perimeter;
     }
 
 }
@@ -99,13 +99,15 @@ class Square extends Shape {
         }
     }
 
-    void getArea() {
-        System.out.println("The area of the square is: " + this.area);
+    double getArea() {
+        return this.area;
     }
 
-    void getPerimeter() {
-        System.out.println("The perimeter of the square is: " + this.perimeter);
+    double getPerimeter()
+    {
+        return this.perimeter;
     }
+
 }
 
 class Triangle extends Shape {
@@ -141,12 +143,14 @@ class Triangle extends Shape {
         }
     }
 
-    void getArea(){
-        System.out.printf("The area of the triangle is: %.2f\n", this.area);
+    double getArea()
+    {
+        return this.area;
     }
 
-    void getPerimeter(){
-        System.out.printf("The perimeter of the triangle is: %.2f\n", this.perimeter);
+
+    double getPerimeter(){
+        return this.perimeter;
     }
 }
 
@@ -155,20 +159,22 @@ public class Main {
          Triangle t = new Triangle();
          t.calculateArea(4);
          t.calculatePerimeter(4);
-         t.getArea();
-         t.getPerimeter();
+         System.out.println("Triangle's area is: " + t.getArea());
+         System.out.println("Triangle's perimeter is: " + t.getPerimeter());
 
          Square s = new Square();
         s.calculateArea(4);
         s.calculatePerimeter(4);
-        s.getArea();
-        s.getPerimeter();
+        System.out.println("Square's area is: " + s.getArea());
+        System.out.println("Square's perimeter is: " + s.getPerimeter());
 
-         Circle c = new Circle();
+
+        Circle c = new Circle();
         c.calculateArea(4);
         c.calculatePerimeter(4);
-        c.getArea();
-        c.getPerimeter();
+        System.out.println("Circle's area is: " + c.getArea());
+        System.out.println("Circle's perimeter is: " + c.getPerimeter());
+
 
 
 
