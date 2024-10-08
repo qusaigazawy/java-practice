@@ -4,14 +4,16 @@ import javax.naming.directory.InvalidAttributesException;
 
 
 class Triangle extends Shape {
-    double area;
-    double perimeter;
-    double side;
-    boolean isAreaCalculated = false;
-    boolean isPerimeterCalculated = false;
+    private double area;
+    private double perimeter;
+    private double side;
+    private boolean isAreaCalculated = false;
+    private boolean isPerimeterCalculated = false;
 
     public void setSide(double side) {
-        this.side = side;
+        if (checkAttribute(side)) this.side = side;
+        else throw new IllegalStateException("Side can not be smaller than or equal to zero!");
+
         if (this.side != side) {
             this.isAreaCalculated = false; // to reset
             this.isPerimeterCalculated = false; // to reset
@@ -21,13 +23,10 @@ class Triangle extends Shape {
 
     public double calculatePerimeter() {
         try {
-            if (this.side > 0) {
                 this.perimeter = 3 * this.side;
                 this.isPerimeterCalculated = true;
 
                 return this.perimeter;
-
-            } else throw new InvalidAttributesException("Side can not be below or equal to zero");
         } catch (Exception e) {
             System.out.println("Invalid attribute: " + e);
         }
@@ -36,19 +35,10 @@ class Triangle extends Shape {
     }
 
     public double calculateArea() {
-        try {
-            if (this.side > 0) {
                 this.area = (Math.sqrt(3) / 4) * this.side * this.side;
                 this.isAreaCalculated = true;
 
                 return this.area;
-
-            } else throw new InvalidAttributesException("Side can not be below or equal to zero: " + this.side);
-        } catch (Exception e) {
-            System.out.println("Invalid attribute: " + e);
-        }
-
-        return -1;
     }
 
     public double calculateArea(double side) {

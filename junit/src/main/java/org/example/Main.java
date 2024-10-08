@@ -39,10 +39,12 @@ public class Main {
         // CIRCLE:
 
         try {
+            c.setRadius(-2);
             System.out.println("Circle's uncalculated area is: " + c.getArea());
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
+        
 
         try {
             System.out.println("Circle's uncalculated perimeter is: " + c.getPerimeter());
