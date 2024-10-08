@@ -3,23 +3,26 @@ import javax.naming.directory.InvalidAttributesException;
 
 
  class Circle extends Shape {
-    double area;
-    double perimeter;
-    double radius;
-    boolean isAreaCalculated = false;
-    boolean isPerimeterCalculated = false;
+
+     private double area;
+     private double perimeter;
+     private double radius;
+     private boolean isAreaCalculated = false;
+     private boolean isPerimeterCalculated = false;
 
     public void setRadius(double radius) {
-         this.radius = radius;
+         if (checkAttribute(radius)) this.radius = radius;
+         else throw new IllegalStateException("Side can not be smaller than zero or equal to 0");
+
          if (this.radius != radius) {
-             this.isAreaCalculated = false;
-             this.isPerimeterCalculated = false;
+             this.isAreaCalculated = false; // to reset
+             this.isPerimeterCalculated = false; // to reset
          }
     }
 
     public double calculateArea() {
         try {
-            if (this.radius > 0) {
+            if (checkAttribute(this.radius)) {
                 this.area = Math.PI * this.radius * this.radius;
                 this.isAreaCalculated = true;
                 return this.area;

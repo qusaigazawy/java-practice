@@ -3,14 +3,16 @@ import javax.naming.directory.InvalidAttributesException;
 
 
 class Square extends Shape {
-    double area;
-    double perimeter;
-    double side;
-    boolean isAreaCalculated = false;
-    boolean isPerimeterCalculated = false;
+    private double area;
+    private double perimeter;
+    private double side;
+    private boolean isAreaCalculated = false;
+    private boolean isPerimeterCalculated = false;
 
     public void setSide(double side) {
-        this.side = side;
+        if (checkAttribute(side)) this.side = side; // Not really sure if I should add the try catch here or in main, would like to hear your advice on that.
+        else throw new IllegalStateException("Side can not be smaller than zero or equal to 0");
+
         if (this.side != side) {
             this.isAreaCalculated = false; // reset
             this.isPerimeterCalculated = false; // reset
@@ -18,38 +20,26 @@ class Square extends Shape {
     }
 
     public double calculateArea() {
-        try {
-            if (this.side > 0) {
-                this.area = side * side;
-                this.isAreaCalculated = true;
 
-                return this.area;
-            } else throw new InvalidAttributesException("Side can not be below or equal to zero");
-        } catch (Exception e) {
-            System.out.println("Invalid attribute: " + e);
+            this.area = this.side * this.side;
+            this.isAreaCalculated = true;
+
+            return this.area;
+
         }
-        return -1;
-    }
 
     public double calculateArea(double side) {
-        this.side = side;
+        if (checkAttribute(side)) this.side = side;
+        else throw new IllegalStateException("Side could not be smaller than or equal to zero!"); // Should I add try catch here or in main? Would like to hear your advice on that.
 
         return this.calculateArea();
     }
 
     public double calculatePerimeter() {
-        try {
-            if (this.side > 0) {
                 this.perimeter = 4 * this.side;
                 this.isPerimeterCalculated = true;
 
                 return this.perimeter;
-            } else throw new InvalidAttributesException("Side can not be below or equal to zero");
-        } catch (Exception e) {
-            System.out.println("Invalid attribute: " + e);
-        }
-
-        return -1;
     }
 
     public double getArea()   {
